@@ -1,0 +1,428 @@
+
+<link rel="stylesheet" href="/a/css/editor.css" type="text/css"/>
+<link rel="stylesheet" href="/a/css/sendEmail.css" type="text/css"/>
+<link rel="stylesheet" href="/a/css/userTimeline.css" type="text/css"/>
+<link rel="stylesheet" href="/a/css/bootstrap-datetimepicker.less">
+<link rel="stylesheet" href="/css/ng-tags-input.min.css" />
+<link rel="stylesheet" href="/css/ng-tags-input.bootstrap.min.css" />
+<link rel="stylesheet" href="/css/timeline.css" />
+<script src="/js/angular.min.js"></script>
+<script src="/a/lib/datetimepcker/js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="/a/js/editor.js" type="text/javascript"></script>
+<script src="/a/js/ui-userTime.js" type="text/javascript"></script>
+<script src="/js/ng-tags-input.min.js"></script>
+<script src="/a/js/main.js" type="text/javascript"></script>
+<script src="/js/app2.js"></script>
+<script src="/js/timelineController.js"></script>
+<script src="/a/lib/select2/js/select2.min.js" type="text/javascript"></script>
+<script src="/a/js/app-email-compose.js" type="text/javascript"></script>
+
+
+
+<div class="container-fluid" style="margin-top: 85px;margin-left: 85px" ng-app="myApp2"  ng-init="id='{{id}}'">
+  <div class="rows">
+      <div class="col-md-8">
+          <div class="panel panel-default">
+              <ul class="nav nav-tabs">
+                  <li class="active"><a href="#idNewNote" data-toggle="tab" aria-expanded="false"><i class="pe-7s-note2"></i><span>New Note</span></a></li>
+                  <li class=""><a href="#idEmail" data-toggle="tab" aria-expanded="false"><i class="pe-7s-mail"></i><span>Email</span></a></li>
+                  <li class=""><a href="#idCall" data-toggle="tab" aria-expanded="true"><i class="pe-7s-call"></i><span>Call</span></a></li>
+                  <li class=""><a href="#idLogActivity" data-toggle="tab" aria-expanded="true"><i class="pe-7s-phone"></i><span>Log Activity</span></a></li>
+                  <li class=""><a href="#idCreateTask" data-toggle="tab" aria-expanded="true"><i class="pe-7s-monitor"></i><span>Create Task</span></a></li>
+                  <li class=""><a href="#idSchedule" data-toggle="tab" aria-expanded="true"><i class="pe-7s-alarm"></i><span>Schedule</span></a></li>
+              </ul>
+              <div class="panel-body">
+                  <div class="tab-content">
+                      <div id="idNewNote" class="tab-pane cont active">
+                          <div class="row" id="id-row-button">
+                              <div class=" col-md-12">
+                                  <textarea class="form-control" id="leaveNote" ng-model="leaveNote" placeholder="Start typing to leave a note"></textarea>
+                              </div>
+                              <br>
+                              <br>
+                              <div class=" col-md-12" style="margin-top: 10px;">
+                                  <div class="form-group pull-right">
+                                      <button type="submit" class="btn btn-action btn-alt1  btn-space" id="createNote" ng-click="btnCreateNote()"><i class="pe-7s-mail" style="margin-right: 2px;"></i>Create</button>
+                                      <button type="reset" class="btn btn-primary btn-space" id="resetNote"><i class="pe-7s-close" ></i>Reset</button>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div id="idEmail" class="tab-pane cont">
+                          <div class="container">
+                              <div class="row">
+                                <!--  <div id="navbar" class="navbar-collapse collapse dropdown">
+                                      <ul class="nav navbar-nav" >
+
+                                          <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                 aria-expanded="false">Templates <span class="caret"></span></a>
+                                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                                  <li class="dropdown-submenu"><a tabindex="0" data-toggle="dropdown" href="#">An Email Templates That
+                                                      Converts </a>
+
+                                                  </li>
+
+                                                  <li class="dropdown-submenu"><a tabindex="0" data-toggle="dropdown" href="#">Break email - Sample
+                                                      Template</a>
+
+                                                  </li>
+                                              </ul>
+                                          </li>
+                                          <li><a href="#documents">Documents</a></li>
+                                          <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                 aria-expanded="false">Meeting <span class="caret"></span></a>
+                                              <ul class="dropdown-menu" role="menu">
+                                                  <li><a href="#">Resiko Lokasi</a></li>
+                                                  <li><a href="#">Resiko Design</a></li>
+                                                  <li><a href="#">Resiko Konstruksi</a></li>
+
+                                              </ul>
+                                          </li>
+
+                                      </ul>
+
+                                  </div> -->
+                                  <!--/.nav-collapse -->
+
+                              </div>
+                          </div>
+                          <div class="main-content">
+                              <div class="row" id="">
+                                  <div class="col-sm-2">
+                                      <h4>Subject :</h4>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <div class="input-group col-md-12">
+                                          <input type="text" id="txtEmailTo" class="form-control" placeholder="Enter email subject">
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class="row" id="">
+                                  <div class="col-sm-2">
+                                      <h4>To :</h4>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <div class="input-group col-md-12">
+                                          <input type="text" id="txtEmailTo" class="form-control" placeholder="Enter email to">
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class="row" id="">
+                                  <div class="col-sm-2">
+                                      <h4>Cc :</h4>
+                                  </div>
+                                  <div class="col-sm-7">
+                                      <div class="input-group col-md-12">
+                                          <input type="text" id="txtEmailTo" class="form-control" placeholder="Enter email Cc">
+                                      </div>
+                                  </div>
+
+                              </div>
+                              <div class=" col-md-12">
+                               <textarea class="form-control" id="emailEditor" placeholder=""></textarea>
+
+                              </div>
+                              <div class=" col-md-12" style=" margin-top: 10px;">
+                                  <div class="form-group pull-right">
+                                      <button type="submit" class="btn btn-action btn-alt1  btn-space" id="createNote"><i class="pe-7s-mail" style=" margin-right: 2px;"></i>Send</button>
+                                      <button class="btn btn-primary btn-space" id="resetNote"><i class="pe-7s-close" ></i>Reset</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div id="idCall" class="tab-pane cont">
+                          wqert
+                      </div>
+                      <div id="idLogActivity" class="tab-pane cont">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="btn-group">
+                                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                          Log a call <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu" role="menu">
+                                          <li><a href="#"></a></li>
+                                          <li><a href="#">Log an Email</a></li>
+                                          <li><a href="#">Log a meeting</a></li>
+
+                                      </ul>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <input size="16" type="text" id="logDateTime" value="2017-03-10 14:45" readonly class="form_datetime"
+                                         style="
+     margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 120px;
+">
+                              </div>
+                              <div class=" col-md-12">
+                                  <textarea class="form-control" id="logActivityEditor" placeholder=""></textarea>
+
+
+
+                              </div>
+                              <div class="col-md-12" style="
+    margin-top: 10px;
+">
+                                  <div class="form-group pull-right">
+                                      <button type="submit" class="btn  btn-action btn-alt1 btn-space" id="createNote"><i class="pe-7s-call"></i>
+                                          Log Activity</button>
+                                      <button class="btn btn-primary btn-space" id="resetNote"><i class="pe-7s-close" ></i>Reset</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div id="idCreateTask" class="tab-pane cont">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div>
+                                      <input type='text' class="form-control" id="idTask"
+                                             placeholder="Enter your task" />
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <input size="16" type="text" id="logDateTime" value="2017-03-10 14:45" readonly class="form_datetime"
+                                         style="
+     margin-top: 5px;
+    margin-bottom: 0px;
+    margin-left: 120px;
+">
+                              </div>
+                              <div class=" col-md-12">
+                                  <text class="form-control" id="createTaskEditor" placeholder=""></text>
+
+
+
+                              </div>
+                              <div class="col-md-12" style="margin-top: 10px;">
+                                  <div class="form-group pull-right">
+                                      <button type="submit" class="btn  btn-action btn-alt1 btn-space" id="idSaveTask">Save Task</button>
+                                      <button type="reset" class="btn btn-primary btn-space" id="resetTask"><i class="pe-7s-close" ></i>Reset</button>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-9">
+                                      <div class="col-md-3">
+
+                                      </div>
+
+                                      <div class="col-md-3">
+                                          <h5>Assigned To</h5>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <h5>Email reminder</h5>
+                                      </div>
+
+                                  </div>
+                                  <div class="col-md-3">
+                                  </div>
+                              </div>
+
+                          </div>
+                      </div>
+                      <div id="idSchedule" class="tab-pane cont">
+                          <div class="container">
+                              <h2>Duration</h2>
+
+                              <div class="dropdown">
+                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">1 hour
+                                      <span class="caret"></span></button>
+                                  <ul class="dropdown-menu">
+                                      <li><a tabindex="-1" href="#">2 hours</a></li>
+                                      <li><a tabindex="-1" href="#">3 hours</a></li>
+
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <ul class="timeline">
+                          <li class="timeline-item">
+                              <div class="timeline-date"><span>September 16, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar2.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">4:34 PM</span><span class="timeline-autor">Penelope Thornton</span>
+                                      <p class="timeline-activity">Pellentesque imperdiet sit <a href="#">Amet nisl sed mattis</a>.</p>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item timeline-item-detailed">
+                              <div class="timeline-date"><span>September 13, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar3.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">9:54 AM</span><span class="timeline-autor">Kristopher Donny  </span>
+                                      <p class="timeline-activity">Mauris condimentum est <a href="#">Viverra erat fermentum</a>.</p>
+                                      <div class="timeline-summary">
+                                          <p>Suspendisse ac libero sed mauris tempor vehicula porttitor non sapien. Aliquam viver... </p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item timeline-item-detailed timeline-item-gallery">
+                              <div class="timeline-date"><span>August 23, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar6.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">10:42 AM</span><span class="timeline-autor">Sherwood Clifford  </span>
+                                      <p class="timeline-activity">pellentesque tortor <a href="#">enim</a>.</p>
+                                      <div class="timeline-gallery"><img src="/a/img/gallery1.jpg" alt="Thumbnail" class="gallery-thumbnail"><img src="/a/img/gallery3.jpg" alt="Thumbnail" class="gallery-thumbnail"><img src="/a/img/gallery4.jpg" alt="Thumbnail" class="gallery-thumbnail"><img src="/a/img/gallery5.jpg" alt="Thumbnail" class="gallery-thumbnail"></div>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item timeline-item-detailed">
+                              <div class="timeline-date"><span>August 6, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar8.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">7:15 PM</span><span class="timeline-autor">Benji Harper </span>
+                                      <p class="timeline-activity">Mauris condimentum est <a href="#">Vestibulum justo neque</a>.</p>
+                                      <div class="timeline-summary">
+                                          <p>Quisque condimentum enim nec porttitor egestas. Morbi fermentum in ante volutpat... </p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item">
+                              <div class="timeline-date"><span>August 4, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar5.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">12:02 PM</span><span class="timeline-autor">Justine Myranda </span>
+                                      <p class="timeline-activity">Pellentesque imperdiet sit <a href="#">Amet nisl sed mattiss</a>.</p>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item timeline-item-detailed">
+                              <div class="timeline-date"><span>June 11, 2016</span></div>
+                              <div class="timeline-content">
+                                  <div class="timeline-avatar"><img src="/a/img/avatar6.jpg" alt="Avatar" class="circle"></div>
+                                  <div class="timeline-header"><span class="timeline-time">6:25 AM</span><span class="timeline-autor">Sherwood Clifford </span>
+                                      <p class="timeline-activity">pellentesque tortor <a href="#">Aliquam viverra</a>.</p>
+                                      <blockquote class="timeline-blockquote">
+                                          <p>Quisque condimentum enim nec porttitor egestas. </p>
+                                          <footer>Aliquam viverra ornare dolor.</footer>
+                                      </blockquote>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="timeline-item timeline-loadmore"><a href="#" class="load-more-btn">Load more</a></li>
+                      </ul>
+                  </div>
+              </div>
+
+
+          </div>
+      </div>
+  </div>
+
+    <div class="col-md-4" ng-controller="myCtrl2">
+        <div class="panel panel-default">
+            <div class="panel-body ticket-panel">
+                <b><h2 ng-bind="ticketStatus"></h2></b>
+            </div>
+        </div>
+        <hr>
+        <h3>Requeter Info</h3>
+        <hr>
+
+        <form class="form-horizontal">
+            <h3>Ticket Properties</h3>
+            <div class="rows">
+               <div class="col-md-8">
+
+               </div>
+               <div class="col-md-4">
+                   <button type="submit" class="btn btn-primary  white" ng-click="btnUpdateTicket()" id='btnUpdateTicket' ng-model="btnUpdateTicket">Update</button>
+               </div>
+           </div>
+            <div class="rows">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12" >
+                            <label for="CDOstatus">Status *</label>
+                            <select class="selectpicker form-control" name="CDOstatus" id="CDOstatus" ng-model="CDOstatus" ng-options="sts.id as sts.name for sts in status">
+                                <option value="">STATUS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12" >
+                            <label for="CDOpriority">Priority *</label>
+                            <select class="selectpicker form-control" name="CDOpriority" id="CDOpriority" ng-model="CDOpriority" ng-options="prioty.id as prioty.name for prioty in priority" >
+                                <option value="">PRIORITY</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--        <div class="rows">
+              <div class="form-group">
+                <div class="col-md-12" >
+                  <label for="CDOsource">Source *</label>
+                  <select class="selectpicker form-control" name="CDOsource" id="CDOsource" ng-model="CDOsource" ng-init="CDOsource='{{data.0.INCPriority}}'">
+                      <option value="">SOURCE</option>
+                      {{#each SOURCE}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+                  </select>
+  						</div>
+            </div>
+        </div>
+        <div class="rows">
+            <div class="form-group">
+              <div class="col-md-12" >
+                <label for="CDOgroup">Group *</label>
+                <select class="selectpicker form-control" name="CDOgroup" id="CDOgroup" ng-model="CDOgroup" ng-init="CDOgroup='{{data.0.INCPriority}}'">
+                    <option value="">GROUP</option>
+                    {{#each GROUP}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+                </select>
+  						</div>
+            </div>
+        </div>
+-->        <div class="rows">
+            <div class="form-group">
+                <div class="col-md-12" >
+                    <label for="CDOagent">Agent *</label>
+                    <select class="selectpicker form-control" name="CDOagent" id="CDOagent" ng-model="CDOagent" ng-options="agnt.id as agnt.name for agnt in agent" >
+                        <option value="">AGENT</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+            <div class="rows">
+                <div class="form-group">
+                    <div class="col-md-12" >
+                        <label for="CDOtype">Type *</label>
+                        <input type="text" class="form-control" name="txtModule" id="txtModule" ng-model="txtModule" >
+                    </div>
+                </div>
+            </div>
+                       <div class="rows">
+                          <div class="form-group">
+                            <div class="col-md-12">
+                              <label for="txtTags">Tags</label>
+                              <tags-input class="tag-height" ng-model="txtTags"></tags-input>
+                            </div>
+                          </div>
+                      </div>
+             <div class="rows">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary  white" ng-click="btnUpdateTicket()" id='btnUpdateTicket' ng-model="btnUpdateTicket">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+
+
+
+<div class="am-wrapper am-login" style="background-color: #555555">
+        {{#if session}}
+            <h3  align="center" style="color:red;margin-top:90px;">Please Log In First</h3>
+        {{/if}}
+        {{#if validate}}
+            <h3 align="center" style="color:red;margin-top:90px">Incorrect Username or Password</h3>
+        {{/if}}
+
+          <div class="login-container">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h2 style="font-family:AR BERKLEY;color:white;font-size:250%">Sims</h2><span>Please enter your user information.</span></div>
+              <div class="panel-body">
+			     <form action="/login" method="POST" class="form-horizontal" name="userform">
+                  <div class="login-form">
+                    <div class="form-group">
+                      <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="username" type="text" placeholder="Username" autocomplete="off" class="form-control" ng-model="txtusername"  required/>
+                          <div ng-messages="userform.txtusername.$error"></div>
+
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="password" type="password" placeholder="Password" class="form-control" ng-model="txtpassword"  required/>
+                          <div ng-messages="userform.txtusername.$error"></div>
+                      </div>
+                    </div>
+                    <div class="form-group login-submit">
+                      <button data-dismiss="modal" type="submit" class="btn btn-primary btn-lg">Log me in</button>
+                    </div>
+                      <div > Need an account ?<a href="/signup.htm" style="color:#33FCFF;font-size:15px"> Sign up Now !</a></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>

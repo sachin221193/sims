@@ -1,0 +1,62 @@
+<div class="am-wrapper am-login am-signup" style="background-color: #555555" >
+    <div class="login-container sign-up" style="margin-top:0px;margin-bottom:0px">
+        <div class="panel panel-default" >
+            <div class="panel-heading" style="margin-bottom:0px"><h2 style="font-family:AR BERKLEY;color:white;font-size:250%">Sims</h2><span>Please enter your user information.</span></div>
+            <div class="panel-body" style="padding-top:0px;padding-bottom:0px">
+                <form class="form-horizontal" name="Pushbizform" action="/signup" method="POST">
+                    <div class="panel-body" >
+                        <div class="form-group" >
+                            <div id="nick-handler" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" name="txtFirstName" placeholder="Your Name" autocomplete="off" class="form-control" ng-model="txtFirstName" required/>
+                                <div ng-messages="Pushbizform.txtFirstName.$error"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="nick-handler" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" name="txtusername"  placeholder="Username" autocomplete="off" class="form-control" ng-model="txtusername" required/>
+                                <div ng-messages="Pushbizform.txtusername.$error"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div id="email-handler" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="email" name="txtemail" placeholder="E-mail" autocomplete="off" class="form-control" ng-model="txtemail" required/>
+                                <div ng-messages="Pushbizform.txtemail.$error"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="mobile-handler" class="input-group" ng-class="{'has-error': Pushbizform.txtmobile.$error.number}"><span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                <input type="mobile" name="txtmobile" ng-minlength="10" ng-maxlength="10" placeholder="Mobile" autocomplete="off" class="form-control"   ng-model="txtmobile" required />
+                                <div ng-messages="Pushbizform.txtmobile.$error"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-6">
+                                    <div id="password-handler" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input name="password" type="password" placeholder="Password" autocomplete="off" class="form-control" ng-model="Pushbizform.password" required/>
+                                        <div ng-messages="Pushbizform.txtpassword.$error"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div id="confirm-handler" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input name="confirmPassword" parsley-equalto="#txtpassword" type="password" autocomplete="off" class="form-control" placeholder="Confirm" ng-model="Pushbizform.confirmPassword"
+                                               required
+                                               compare-to="Pushbizform.password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div id="website-url" class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-link"></i> </span>
+
+                                    <input type="website" name="txtwebsite" placeholder="Website url" autocomplete="off" class="form-control" ng-model="txtwebsite" required/>
+                                    <div ng-messages="Pushbizform.txtwebsite.$error"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="conditions">By creating an account, you agree with the <a href="#">Terms and Conditions</a>.</p>
+                        <button type="submit" class="btn btn-block btn-primary btn-lg" ng-click="btnsignup()" ng-model="btnSignup">Sign Up</button>
+                </form>
+            </div>
+        </div>
+        <div class="text-center out-links" style="margin-top:0px">2017 © All Rights Reserved. by C Simplify IT</div>
+    </div>
+</div>

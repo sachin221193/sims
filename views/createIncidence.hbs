@@ -1,0 +1,233 @@
+<div class="container" ng-app="myApp"  ng-init="INCid='{{id}}'" style="margin-top:80px;margin-right:20px; width:90%;">
+    <div class="col-md-12">
+        <fieldset style="border: 0px" ng-controller="myCtrl">
+            <form class="form-horizontal" name="ticketForm" method="post" >
+                <div class = "row">
+
+                    <div class="col-md-10">
+                        <h4>Create a new ticket | Select a template</h4>
+                    </div>
+                    <br>
+                    <div class="col-md-2">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary  white" ng-click="btnTicketSubmission()" id='btnSubmitTicket' ng-model="btnSubmitTicket">Submit</button>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="button" VALUE="Back" onClick="history.go(-1);return true;" class="btn btn-default" id='btnResetForm' name='btnResetForm'  ng-model='btnResetForm'>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p>The requester will receive an email notification that a new ticket has been created. it can be disabled in Admin > Email notifications.</p>
+                <br>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label for="txtRequesterName">Requester *</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="txtRequesterName" id="txtRequesterName" placeholder="Search a requester" ng-model="txtRequesterName" ng-init="txtRequesterName='{{data.0.INCUser}}'" required title="Insert only requester name.">
+                                <div class="help-block" ng-messages="ticketForm.txtRequesterName.$error" ng-if="ticketForm.txtRequesterName.$touched">
+                                    <p ng-message="required">Requester name is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label for="txtSubjectName">Subject *</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="txtSubjectName" id="txtSubjectName" ng-model="txtSubjectName" ng-init="txtSubjectName='{{data.0.INCSubject}}'" required>
+                                <div class="help-block" ng-messages="ticketForm.txtSubjectName.$error" ng-if="ticketForm.txtSubjectName.$touched">
+                                    <p ng-message="required">Subject is required.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="CDOtype">Type</label>
+                            </div>
+                            <div class="col-md-8" >
+                                <input type="text" class="form-control" name="txtType" id="txtType" ng-model="txtType" ng-init="txtType='{{data.0.INCModuleName}}'" required>
+                                <!--										<select class="selectpicker form-control" name="CDOtype" id="CDOtype" ng-model="CDOtype" ng-init="CDOtype='{{data.0.INCModuleName}}'">
+												<option value="">--SELECT TYPE--</option>
+												{{#each TYPE}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+										</select>
+-->								</div>
+                            <div class="help-block" ng-messages="ticketForm.txtType.$error" ng-if="ticketForm.txtType.$touched">
+                                <p ng-message="required" align='center'>Type is required.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="CDOstatus">Status *</label>
+                            </div>
+                            <div class="col-md-8" >
+                                <select class="selectpicker form-control" name="CDOstatus" id="CDOstatus" ng-model="CDOstatus" ng-options="status.id as status.name for status in status" ng-init="CDOstatus='{{data.0.Status}}'">
+                                    <option value="">--SELECT STATUS--</option>
+                                    {{#each STATUS}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+                                </select>
+                                <!--										<div class="help-block" ng-messages="ticketForm.CDOstatus.$error" ng-if="ticketForm.CDOstatus.$touched">
+                                                                                <p ng-message="required">Status is required.</p>
+                                                                        </div>
+                                -->									</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="CDOpriority">Priority *</label>
+                            </div>
+                            <div class="col-md-8" >
+                                <select class="selectpicker form-control" name="CDOpriority" id="CDOpriority" ng-model=" CDOpriority" ng-options="priority.id as priority.name for priority in priority" ng-init="CDOpriority='{{data.0.INCPriority}}'">
+                                    <option value="">--SELECT PRIORITY--</option>
+                                    {{#each PRIORITY}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+                                </select>
+                                <!--									<div class="help-block" ng-messages="ticketForm.CDOpriority.$error" ng-if="ticketForm.CDOpriority.$touched">
+                                                                            <p ng-message="required">Priority is required.</p>
+                                                                    </div>
+                            -->  								</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="CDOlocation">Location</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="txtLocation" id="txtLocation" placeholder="Search a requester" ng-model="txtLocation" ng-init="txtLocation='{{data.0.LocName}}'" required>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-info btn-block" name="btnLocation" id="btnLocation" ng-model="btnLocation" ng-click="btnopenUrl()"  Style="margin:3px;">Vist Url</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="CDOagent">Agent </label>
+                            </div>
+                            <div class="col-md-8" >
+                                <select class="selectpicker form-control" name="CDOagent" id="CDOagent" ng-model="CDOagent" ng-options="agnt.id as agnt.name for agnt in agent" ng-init="CDOagent='{{data.0.INCFixedBy}}'">
+                                    <option value="">--SELECT AGENT--</option>
+                                    {{#each AGENT}}<option value="{{this.KeyCode}}">{{this.key1}}</option>{{/each}}
+                                </select>
+                                <!--										<div class="help-block" ng-messages="ticketForm.txtRequesterName.$error" ng-if="ticketForm.txtRequesterName.$touched">
+                                                                                <p ng-message="required">Requester name is required.</p>
+                                                                    </div>
+                                -->										</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="uploadfile">Upload File</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="file" class="form-control" name="uploadfile" id="uploadfile" file-model="myFile" multiple>
+                                <!--										<div class="help-block" ng-messages="ticketForm.txtSubjectName.$error" ng-if="ticketForm.txtSubjectName.$touched">
+                                                                            <p ng-message="required">Subject is required.</p>
+                                                                        </div>
+                                        -->							</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="txtTags">Tags</label>
+                            </div>
+                            <div class="col-md-8">
+                                <tags-input ng-model="txtTags" key-property="{{TAG}}" ></tags-input>
+                                <!--											<div class="help-block" ng-messages="ticketForm.txtRequesterName.$error" ng-if="ticketForm.txtRequesterName.$touched">
+                                                                                  <p ng-message="required">Requester name is required.</p>
+                                                                              </div>
+                                        -->								</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label for="status">Description *</label>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="panel panel-default">
+                                    <div class="panel-header">
+                                        <textarea class="form-control" type="textarea" name="txtmessage" id="txtmessage" maxlength="250" rows="7" ng-model="txtmessage" ng-init="txtmessage='{{data.0.Description}}'"required></textarea>
+                                        <script>
+                                            CKEDITOR.replace( 'txtmessage' );
+
+                                        </script>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class = "row">
+
+                    <div class="col-md-10">
+                    </div>
+                    <div class="col-md-2">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary  white" ng-click="btnTicketSubmission()" id='btnSubmitTicket' ng-model="btnSubmitTicket">Submit</button>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="button" VALUE="Back" onClick="history.go(-1);return true;" class="btn btn-default" id='btnResetForm' name='btnResetForm'  ng-model='btnResetForm'>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+            </form>
+
+        </fieldset>
+    </div>
+</div>

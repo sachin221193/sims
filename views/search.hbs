@@ -1,0 +1,95 @@
+<div id="pageBody" >
+    <div class="page-body" >
+        {{>filters}}
+        <div style="background-color:white">
+        <div id="resultList" class="search-results" >
+			       <div style="margin: 7px" id="paginationSize" name="{{newSize}}">
+				           <div>
+                      <div>
+              					{{#if searchTerm}}
+              						<h1>Showing Results for ' {{searchTerm}} '</h1>
+              					{{/if}}
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+  					                       <h4>Found {{totalResults}} matches</h4>
+                          </div>
+                          <div class="col-md-6" align="right">
+                              <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" style="margin-right: 65px">Start Slide Show</button>
+                          </div>
+                      </div>
+                   </div>
+             </div>
+            <div style="margin: 10px">
+                    {{#each hits}}
+                          <div class="col col-3-12 item-layout" style="margin: 12px;width: 21%;height:20%">
+								                 <div class="item-inner-layout" >
+                                        <div style="margin: 5px">
+                                                <button title="Edit Incidence" class="incidenceid" style="background-color: white;border: 0px" id="{{this._id}}">
+                                                  <div>
+                                                      <img src="{{this._source.INCImgPathRef}}"  class="img-responsive" style="height:150px; width:200px"   >
+                                                  </div>
+                                                </button>
+                                        </div>
+                                        <div>
+                                            <div class="incidence-details">
+                                                    <h5 align="left"><b>Status: </b>{{this._source.INCStatus}}</h5>
+                                                    <h5 align="left"><b>Updated By: </b>{{this._source.INCUpdBy}}</h5>
+                                                    <h5 align="left"><b>User Type: </b>{{this._source.INCUserType}}</h5>
+                                                    <h5 align="left"><b>Priority: </b>{{this._source.INCPriority}}</h5>
+                                                    <h5 align="left"><b>Created On: </b>{{this._source.INCDateTime}}</h5>
+                                                    <h5 align="left"><b>Module Name: </b>{{this._source.INCModuleName}}</h5>
+                                            </div>
+                                              <div align="right" style="float:left;margin-top: 10px">
+                                                  <a title="View Timeline" href="/timeline/?id={{this._id}}" > <span class="pe-stack pe-lg"><i class="pe-7s-clock pe-stack" style="color: #0b0b0b;font-size: 30px" ></i></span></a>
+                                              </div>
+                                        </div>
+
+                                  </div>
+                          </div>
+                    {{/each}}
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary" style="float:right;margin:5px 10px" id="loadMore">load More</button>
+
+        </div>
+
+        <!--
+            <button class="btn btn-primary" style="float:right;margin:5px 10px" id="previousResult">pervious</button>
+            <button class="btn btn-primary" style="float:right;margin:5px 10px" id="loadMore">load More</button>
+         -->
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div id="carousel-example-generic"  class="carousel slide" data-ride="carousel">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                               <a class="an" href="/incidence/createUpdate/?id={{hits.0._id}}"> <img class="img-responsive itemimg" src="{{hits.0._source.INCImgPathRef}}"  alt="View Incidence Details"></a>
+                            </div>
+                            {{#each hits}}
+                            <div class="item">
+                                <a class="an" href="/incidence/createUpdate/?id={{this._id}}"><img class="img-responsive itemimg" src="{{this._source.INCImgPathRef}}"  alt="View Incidence Details"></a>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+              </div>
+       </div>
+</div>
+
+
+
+<script src="/js/search.js"></script>

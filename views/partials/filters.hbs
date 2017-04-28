@@ -1,0 +1,59 @@
+<div class="product-filters"  >
+    <div  style="margin: 5px;margin-top: 20px" id="filters">
+
+        <!-- <div class="filter">
+             <span><h3 align="center">FILTERS</h3></span>
+         </div>-->
+        <div class="filter-list" style="margin-top:10px">
+            <div class="filter-title" id="distance">
+                <h4>Distance</h4>
+                <div class="filter-data">
+                    <input type="checkbox" class="filter-aggs"  name ="distance" id="5km" > 0-5KM<br>
+                    <input type="checkbox" class="filter-aggs"  name ="distance" id="10km" > 0-10KM<br>
+                    <input type="checkbox" class="filter-aggs"  name ="distance" id= "30km"> 0-30KM<br>
+                </div>
+            </div>
+            <div class="filter-title" id="usertype">
+                <h4>User Type</h4>
+                <div class="filter-data">
+                    <input type="text" id="usertypeSearch" class="form-control " style=" height: 25px;width: 150px; margin-bottom: 5px;" placeholder="Search">
+                    <ul id="usertype" style="list-style-type:none;padding-left:0px;">
+                        {{#each usertype}}
+                            <li><input type="checkbox" class="filter-aggs" name="usertype"  id="{{this.key}}" >  {{this.key}}</li>
+                        {{/each}}
+                </div>
+            </div>
+            <div class="filter-title" id="updby">
+                <h4>Updated By</h4>
+                <div class="filter-data">
+
+                    <input type="text" id="updbySearch" class="form-control "  style=" height: 25px;width: 150px; margin-bottom: 5px;" placeholder="Search">
+                    <ul id="updby" style="list-style-type:none;padding-left:0px;">
+                        {{#each updby}}
+                            <li><input type="checkbox" class="filter-aggs" name="updby" id="{{this.key}}" >  {{this.key}}</li>
+                        {{/each}}
+                </div>
+            </div>
+            <div class="filter-title" id="priority">
+                <h4>Priority</h4>
+                <div class="filter-data">
+                    <input type="text" id="prioritySearch" class="form-control " style=" height: 25px;width: 150px; margin-bottom: 5px;" placeholder="Search">
+                    <ul id="priority" style="list-style-type:none;padding-left:0px;">
+                        {{#each priority}}
+                            <li><input type="checkbox" class="filter-aggs" name="priority" id="{{this.key}}" >  {{this.key}}</li>
+                        {{/each}}
+                </div>
+            </div>
+            <div class="filter-title" id="status">
+                <h4>Status</h4>
+                <div class="filter-data">
+                    <input type="text" id="statusSearch" class="form-control " style=" height: 25px;width: 150px; margin-bottom: 5px;" placeholder="Search">
+                    <ul id="status" style="list-style-type:none;padding-left:0px;">
+                        {{#each status}}
+                            <li><input type="checkbox" class="filter-aggs" name="status" id="{{this.key}}" >  {{this.key}}</li>
+                        {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

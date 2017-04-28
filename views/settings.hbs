@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="a/lib/stroke-7/style.css"/>
+<link rel="stylesheet" href="/a/css/editor.css" type="text/css"/>
+<div class="am-content" style="margin-top: 75px;margin-left: 85px">
+    <div class="main-content">
+            <div class="user-profile">
+                <div class="user-display">
+                    <div class="photo"><img src="a/img/profile.jpg"></div>
+                    <div class="bottom">
+                        <div class="user-avatar"><span class="status"></span><img src="a/img/gallery6.jpg"></div>
+                        <div class="user-info">
+                            <h4>{{username}}</h4><span></span>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="info-block panel panel-default">
+                                    <div class="panel-heading">
+                                        <h1><center><b>Change Password</b></center></h1>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                    <div class="col-md-4 col-md-12" style="margin-left: 20px;margin-bottom: 40px">
+
+                                        <input class="form-control"  type="password"  name="current_password" id="current_password"  placeholder="Current Password">
+                                        <input class="form-control" type="password" size="30px" name="password" id="password"  placeholder="New-Password">
+                                        <input class="form-control" type="password" size="30px" name="confirmPassword"  id="confirmPassword" placeholder="Confirm Password" ng-model="registration.user.confirmPassword" required compare-to="registration.user.password" />
+                                        <div ng-messages="settingForm.confirmPassword.$error"ng-messages-include="messages.html"></div>
+                                        <button class="btn btn-primary" id="passButton">Submit</button>
+
+                                    </div>
+                                 </div>
+
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+        </div>
+</div>
+
+<script>
+    $("#passButton").click(function () {
+        var match = $('#password').val() == $('#confirmPassword').val();
+        if(!match)
+            window.alert("New Passwords do not match");
+        else {
+            var oldPass = $('#current_password').val();
+            var newPass = $('#password').val();
+            $.ajax({
+                type: "post",
+                url: "/updatepass",
+                data: {oldPass, newPass}
+            }).success(function (data) {
+                if (data.status == "1")
+                    window.alert("Password changed succesfully");
+                else
+                    window.alert("Your current password is wrong");
+            });
+        }
+    });
+</script>
